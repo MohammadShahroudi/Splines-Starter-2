@@ -27,12 +27,12 @@ public class SplinePath : MonoBehaviour
         public float distance;
     }
 
-    private void Update()
+    /*private void Update()
     {
         float u = 55;
         ParameterAtDistance(u);
         // BuildDistanceTable();
-    }
+    }*/
 
     [SerializeField] List<DistanceRow> _distanceTable = new();
 
@@ -115,7 +115,7 @@ public class SplinePath : MonoBehaviour
         // Debug.Log("Hi");
         float smallerDistance = 0;
         float largerDistance = 0;
-        Debug.Log("Distance: " + distance);
+        // Debug.Log("Distance: " + distance);
         
         Vector3 lastPoint = points[0].position;
         float cumulativeDistance = 0f;
@@ -130,18 +130,18 @@ public class SplinePath : MonoBehaviour
             float distanceToLastPoint = (newPoint - lastPoint).magnitude;
             lastPoint = newPoint;
             cumulativeDistance += distanceToLastPoint;
-            Debug.Log("u: " + u);
-            Debug.Log("Cumulative Distance: " + cumulativeDistance);
+            // Debug.Log("u: " + u);
+            // Debug.Log("Cumulative Distance: " + cumulativeDistance);
         
             if (cumulativeDistance < distance)
             {
                 smallerDistance = cumulativeDistance;
-                Debug.Log("Smaller distance: " + smallerDistance);
+                // Debug.Log("Smaller distance: " + smallerDistance);
             }
             if (cumulativeDistance > largerDistance)
             {
                 largerDistance = cumulativeDistance;
-                Debug.Log("Larger distance: " + largerDistance);
+                // Debug.Log("Larger distance: " + largerDistance);
 
                 if (largerDistance > distance)
                 {
@@ -150,9 +150,9 @@ public class SplinePath : MonoBehaviour
             }
         }
         float fraction = (distance - smallerDistance) / (largerDistance - smallerDistance);
-        Debug.Log("Fraction: " + fraction);
+        // Debug.Log("Fraction: " + fraction);
         float interpolatedU = (u - du) + fraction * du;
-        Debug.Log(interpolatedU);
+        // Debug.Log(interpolatedU);
         return interpolatedU;
         // return 0f;
     }
