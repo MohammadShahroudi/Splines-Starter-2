@@ -22,6 +22,9 @@ public class SplineFollow : MonoBehaviour
         {
             // TODO: Advance distance by speed over the frame and look up u for that distance.
             // Stop at TotalLength.
+            _distance += speed * Time.deltaTime;
+            
+            
         }
         else
         {

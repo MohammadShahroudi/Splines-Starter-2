@@ -27,6 +27,13 @@ public class SplinePath : MonoBehaviour
         public float distance;
     }
 
+    private void Update()
+    {
+        float u = 55;
+        ParameterAtDistance(u);
+        // BuildDistanceTable();
+    }
+
     [SerializeField] List<DistanceRow> _distanceTable = new();
 
     // TODO: Count the cubic segments. The scene's ten points make three.
@@ -88,6 +95,10 @@ public class SplinePath : MonoBehaviour
             float distanceToLastPoint = (newPoint - lastPoint).magnitude;
             lastPoint = newPoint;
             cumulativeDistance += distanceToLastPoint;
+            
+            // Debug.Log("u: " + u);
+            // Debug.Log("Cumulative Distance: " + cumulativeDistance);
+            
             _distanceTable.Add(new DistanceRow () { u = u, distance = cumulativeDistance });
         }
     }
@@ -97,7 +108,53 @@ public class SplinePath : MonoBehaviour
     {
         // TODO: Return the u at a distance along the path. Interpolate u (not position)
         // between the two rows around it.
-        return 0f;
+        // Ex from slide 9: if the distance was s = 42.91
+        // The closest s(m) that is smaller than 42.91 is 40.34 at row 5
+        // while the closest s(m) that is bigger than 42.91 is 45.48 at row 6
+        // formula is fraction = (42.91 - 40.34) / (45.48 - 40.34) = 0.5
+        // Debug.Log("Hi");
+        float smallerDistance = 0;
+        float largerDistance = 0;
+        Debug.Log("Distance: " + distance);
+        
+        Vector3 lastPoint = points[0].position;
+        float cumulativeDistance = 0f;
+        
+        float du = 1f / (samplesPerSegment);
+        float u = 0f;
+        
+        for (int i = 0; i < samplesPerSegment * SegmentCount; i++)
+        {
+            u += du;
+            Vector3 newPoint = SampleTangent(u);
+            float distanceToLastPoint = (newPoint - lastPoint).magnitude;
+            lastPoint = newPoint;
+            cumulativeDistance += distanceToLastPoint;
+            Debug.Log("u: " + u);
+            Debug.Log("Cumulative Distance: " + cumulativeDistance);
+        
+            if (cumulativeDistance < distance)
+            {
+                smallerDistance = cumulativeDistance;
+                Debug.Log("Smaller distance: " + smallerDistance);
+            }
+            if (cumulativeDistance > largerDistance)
+            {
+                largerDistance = cumulativeDistance;
+                Debug.Log("Larger distance: " + largerDistance);
+
+                if (largerDistance > distance)
+                {
+                    break;
+                }
+            }
+        }
+        float fraction = (distance - smallerDistance) / (largerDistance - smallerDistance);
+        Debug.Log("Fraction: " + fraction);
+        float interpolatedU = (u - du) + fraction * du;
+        Debug.Log(interpolatedU);
+        return interpolatedU;
+        // return 0f;
     }
 
     void OnDrawGizmos()
