@@ -29,7 +29,7 @@ public class SplinePath : MonoBehaviour
 
     /*private void Update()
     {
-        float u = 5;
+        float u = 55;
         ParameterAtDistance(u);
         // BuildDistanceTable();
     }*/
@@ -130,9 +130,11 @@ public class SplinePath : MonoBehaviour
             float distanceToLastPoint = (newPoint - lastPoint).magnitude;
             lastPoint = newPoint;
             cumulativeDistance += distanceToLastPoint;
+
+            // Debug.Log("New point: " + newPoint);
             // Debug.Log("u: " + u);
             // Debug.Log("Cumulative Distance: " + cumulativeDistance);
-        
+
             if (cumulativeDistance < distance)
             {
                 smallerDistance = cumulativeDistance;
