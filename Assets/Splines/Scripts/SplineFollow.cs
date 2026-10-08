@@ -42,18 +42,35 @@ public class SplineFollow : MonoBehaviour
             // TODO: Advance u in equal steps, paced so the trip takes as long as the distance
             // trip at the same speed. Stop at SegmentCount.
             _u += speed * Time.deltaTime;
-            // Debug.Log("HI");
+            // _u = path.ParameterAtDistance(_distance);
+            // Debug.Log("Current Distance: " + _distance);
+            // Debug.Log("Toal length of Path: " + path.TotalLength);
             // Debug.Log("U: " + _u);
-            /*if ()
+            // Debug.Log("Path Segment Count: " + path.SegmentCount);
+            if (_u >= path.SegmentCount)
             {
-                
-            }*/
+                speed = 0f;
+                _u = path.SegmentCount;
+            }
         }
-
+    
+        // Debug.Log("U value: " + _u);
         // TODO: Place this object at the path point for u. Replay should return it to the start.
+        
+        // Restart();
+        
 
         // TODO: Look at the target if faceTarget is on, otherwise along the path tangent.
         // Use world up so the horizon stays level.
+        if (faceTarget)
+        {
+            // target.
+            // Debug.Log("Face Target: " + target.position);
+        }
+        else
+        {
+            path.SampleTangent(_u);
+        }
     }
 
     public void Restart()

@@ -8429,7 +8429,7 @@ MonoBehaviour:
   path: {fileID: 2121145906}
   target: {fileID: 1071888793}
   speed: 2.5
-  travelByDistance: 1
+  travelByDistance: 0
   faceTarget: 1
 --- !u!20 &1616656504
 Camera:
@@ -10723,7 +10723,7 @@ MonoBehaviour:
   - {fileID: 326586964}
   - {fileID: 1023844541}
   - {fileID: 520877501}
-  samplesPerSegment: 4
+  samplesPerSegment: 3
   _distanceTable: []
 --- !u!4 &2121145907
 Transform:
