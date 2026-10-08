@@ -29,7 +29,7 @@ public class SplinePath : MonoBehaviour
 
     /*private void Update()
     {
-        float u = 55;
+        float u = 80;
         ParameterAtDistance(u);
         // BuildDistanceTable();
     }*/

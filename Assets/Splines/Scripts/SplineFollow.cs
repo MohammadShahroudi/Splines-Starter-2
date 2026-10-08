@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 /*
@@ -18,17 +19,35 @@ public class SplineFollow : MonoBehaviour
 
     void Update()
     {
+        // Debug.Log("Total Length: " + path.TotalLength);
         if (travelByDistance)
         {
             // TODO: Advance distance by speed over the frame and look up u for that distance.
             // Stop at TotalLength.
             _distance += speed * Time.deltaTime;
-            
+            if (_distance >= path.TotalLength)
+            {
+                // Debug.Log("STOP");
+                // Debug.Log("Speed: " + speed);
+                speed = 0f;
+                _distance = path.TotalLength;
+            }
+            // Debug.Log("Current Distance: " + _distance);
+            // Debug.Log("Speed: " + speed);
+            // Debug.Log(path.ParameterAtDistance(_distance));
+            _u = path.ParameterAtDistance(_distance);
         }
         else
         {
             // TODO: Advance u in equal steps, paced so the trip takes as long as the distance
             // trip at the same speed. Stop at SegmentCount.
+            _u += speed * Time.deltaTime;
+            // Debug.Log("HI");
+            // Debug.Log("U: " + _u);
+            /*if ()
+            {
+                
+            }*/
         }
 
         // TODO: Place this object at the path point for u. Replay should return it to the start.
