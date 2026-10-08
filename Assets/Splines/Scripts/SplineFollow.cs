@@ -24,7 +24,6 @@ public class SplineFollow : MonoBehaviour
             // Stop at TotalLength.
             _distance += speed * Time.deltaTime;
             
-            
         }
         else
         {
