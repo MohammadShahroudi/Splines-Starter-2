@@ -56,20 +56,22 @@ public class SplineFollow : MonoBehaviour
     
         // Debug.Log("U value: " + _u);
         // TODO: Place this object at the path point for u. Replay should return it to the start.
-        
-        // Restart();
-        
+        // path.SamplePoint(_u);
+        transform.position = path.SamplePoint(_u); 
+        // Debug.Log(path.transform.position);
 
         // TODO: Look at the target if faceTarget is on, otherwise along the path tangent.
         // Use world up so the horizon stays level.
         if (faceTarget)
         {
-            // target.
+            transform.LookAt(target);
             // Debug.Log("Face Target: " + target.position);
         }
         else
         {
-            path.SampleTangent(_u);
+            // Debug.Log("Point: " + transform.position);
+            // Debug.Log("Tangent:" + path.SampleTangent(_u));
+            transform.LookAt(path.SampleTangent(_u) + transform.position);
         }
     }
 
