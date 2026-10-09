@@ -96,9 +96,9 @@ public class SplinePath : MonoBehaviour
             lastPoint = newPoint;
             cumulativeDistance += distanceToLastPoint;
             
-            // Debug.Log("u: " + u);
-            // Debug.Log("Cumulative Distance: " + cumulativeDistance);
-            
+            // Debug.Log("First Method u: " + u);
+            // Debug.Log("First Method Cumulative Distance: " + cumulativeDistance);
+            // Debug.Log(u == SegmentCount);
             _distanceTable.Add(new DistanceRow () { u = u, distance = cumulativeDistance });
         }
     }
@@ -132,8 +132,8 @@ public class SplinePath : MonoBehaviour
             cumulativeDistance += distanceToLastPoint;
 
             // Debug.Log("New point: " + newPoint);
-            // Debug.Log("u: " + u);
-            // Debug.Log("Cumulative Distance: " + cumulativeDistance);
+            // Debug.Log("Second Method u: " + u);
+            // Debug.Log("Second Method Cumulative Distance: " + cumulativeDistance);
 
             if (cumulativeDistance < distance)
             {
