@@ -157,13 +157,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106759416}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.002181689, z: 0, w: 0.9999976}
   m_LocalPosition: {x: 2.99768, y: 52.63868, z: -36.30502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.25, z: 0}
 --- !u!1 &215913144
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   - {fileID: 1357326086}
   - {fileID: 215913145}
   - {fileID: 1288766605}
-  samplesPerSegment: 64
+  samplesPerSegment: 4
   _distanceTable: []
 --- !u!4 &403735486
 Transform:
@@ -1196,13 +1196,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20075265, y: 0.30528107, z: -0.066004105, w: 0.92851776}
-  m_LocalPosition: {x: -24.4, y: 21, z: -70.5}
+  m_LocalRotation: {x: 0.4807214, y: 0.25832206, z: -0.15064895, w: 0.8243067}
+  m_LocalPosition: {x: -22.958, y: 21.147, z: -70.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 24.4, y: 36.4, z: 0}
+  m_LocalEulerAnglesHint: {x: 60.5, y: 34.8, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Splines::SplineFollow
   path: {fileID: 403735485}
   target: {fileID: 1078996842}
-  speed: 2.5
+  speed: 5
   travelByDistance: 1
   faceTarget: 1
 --- !u!43 &1036664647
