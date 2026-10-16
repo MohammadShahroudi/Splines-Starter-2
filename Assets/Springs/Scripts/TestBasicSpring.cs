@@ -10,7 +10,7 @@ public class TestBasicSpring : MonoBehaviour
     [Header("Spring Settings")]
     public float stiffness = 100f;
     public float mass = 1f;
-    public float damping = 0.1f;
+    public float dampingCoefficient = 0.1f;
 
     [Header("Debug")]
     public LineRenderer maxLine;
@@ -18,18 +18,15 @@ public class TestBasicSpring : MonoBehaviour
     public float maxDisplacement;
     float _maxX, _minX;
     float _stepTime;
+    
+    Vector3 _velocity;
 
     const float FixedStep = 1f / 120f;
 
     void Update()
     {
         // Step the spring in fixed 1/120 s chunks, however long the frame was.
-        _stepTime += Time.deltaTime;
-        while (_stepTime >= FixedStep)
-        {
-            SimulateSpring(FixedStep);
-            _stepTime -= FixedStep;
-        }
+        SimulateSpring(Time.deltaTime);
         UpdateVisuals();
     }
 
@@ -40,11 +37,19 @@ public class TestBasicSpring : MonoBehaviour
         // TODO: Find the restoring force, which pulls toward equilibriumTransform by stiffness,
         // and the damping force, which opposes the velocity. Keep the velocity in a private
         // _velocity field. Acceleration is the total force divided by mass.
-
+        Vector3 displacement = currentPos - equilibriumTransform.position;
+        Vector3 restoringForce = -stiffness * displacement;
+        Vector3 dampingForce = -dampingCoefficient * _velocity;
+        
+        Vector3 force = restoringForce + dampingForce;
+        
         // TODO: Take a semi-implicit Euler step: update the velocity first, then move with the new
         // velocity.
-
-        // attachmentTransform.position = 
+        
+        // F = ma
+        Vector3 acceleration = force / mass;
+        _velocity += acceleration * deltaTime;
+        attachmentTransform.position += _velocity * deltaTime;
     }
 
     void UpdateVisuals()

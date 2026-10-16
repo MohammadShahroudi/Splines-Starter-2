@@ -2765,7 +2765,7 @@ MonoBehaviour:
   springCoilLine: {fileID: 2626983646043084755}
   stiffness: 30
   mass: 1
-  damping: 0
+  dampingCoefficient: 0
   maxLine: {fileID: 2519517660522277532}
   minLine: {fileID: 328219863253765482}
   maxDisplacement: 0
