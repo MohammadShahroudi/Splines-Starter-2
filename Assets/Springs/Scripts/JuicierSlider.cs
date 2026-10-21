@@ -57,13 +57,20 @@ public class JuicierSlider : MonoBehaviour
         // TODO: While pressed (_isPressed), set handleSpring.equilibrium to the pointer's spot on
         // the track, PointerXOnTrack(). Keep it on the track with
         // Mathf.Clamp(..., -travelHalfWidth, travelHalfWidth).
+        if (_isPressed)
+        {
+            handleSpring.equilibrium = Mathf.Clamp(PointerXOnTrack(), -travelHalfWidth, travelHalfWidth);
+        }
 
         // TODO: Set pressSpring.equilibrium to 1 while pressed and 0 otherwise.
+        pressSpring.equilibrium = (_isPressed) ? 1f : 0f;
 
         // TODO: Step both springs with handleSpring.Advance(Time.deltaTime) and
         // pressSpring.Advance(Time.deltaTime). Don't move anything here (that happens in
         // UpdateHandleVisuals).
-
+        handleSpring.Advance(Time.deltaTime);
+        pressSpring.Advance(Time.deltaTime);
+        
         UpdateHandleVisuals();
     }
 
