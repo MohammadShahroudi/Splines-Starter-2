@@ -22,9 +22,18 @@ public class ScaleSliderDemo : MonoBehaviour
         // TODO: Read scaleSlider.value and scale bubbleRoot by it in x and y. Keep z at 1.
         // Use value, not scaleSlider.spring.equilibrium: equilibrium is the target, so the bubble
         // would jump there with no bounce.
+        // bubbleRoot.localScale.x = scaleSlider.value;
+        // Debug.Log("Scale Slider: " + scaleSlider.value);
+        // Debug.Log("Bubble Root X: " + bubbleRoot.localScale.x);
+        // Debug.Log("Bubble Root Y: " + bubbleRoot.localScale.y);
+        // Debug.Log("Bubble Root Z: " + bubbleRoot.localScale.z);
+        // Debug.Log(transform.localScale.z);
+        bubbleRoot.localScale = new Vector3(scaleSlider.value, scaleSlider.value, 1);
         
-
         // TODO: Show the scale, scaleSlider.spring.dampingRatio and scaleSlider.spring.frequencyHz in
         // the three readouts. ToString("0.0") keeps a number short.
+        scaleValueText.text = scaleSlider.value.ToString("0.0");
+        dampingValueText.text = scaleSlider.spring.dampingRatio.ToString("0.0");
+        frequencyValueText.text = scaleSlider.spring.frequencyHz.ToString("0.0");
     }
 }
