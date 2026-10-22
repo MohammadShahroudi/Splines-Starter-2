@@ -82,6 +82,8 @@ public class JuicierSlider : MonoBehaviour
             // TODO: On release, set handleSpring.equilibrium to the nearest slot,
             // NearestSlot(handleSpring.equilibrium). The spring carries the handle there.
             // Watch out: change the target, not the spring's value. SetValue would teleport the handle.
+            handleSpring.equilibrium = NearestSlot(handleSpring.equilibrium);
+            
             _isPressed = false;
         }
 
@@ -98,9 +100,15 @@ public class JuicierSlider : MonoBehaviour
     {
         // TODO: Slide the handle: start from _restSliderPosition, add handleSpring.Value to its x,
         // and assign the result to transform.localPosition.
+        Vector3 restSliderPosition = _restSliderPosition;
+        restSliderPosition.x += handleSpring.Value;
+        transform.localPosition = restSliderPosition;
 
         // TODO: Dip the top: start from _restHandlePosition, add pressDepth * pressSpring.Value to
         // its y, and assign the result to handleTransform.localPosition.
+        Vector3 restHandlePosition = _restHandlePosition;
+        restHandlePosition.y += pressDepth * pressSpring.Value;
+        handleTransform.localPosition = restHandlePosition;
 
         // Watch out: start from the rest positions every frame. Adding to the current position
         // would add the offset again each frame, and the handle would drift away.
